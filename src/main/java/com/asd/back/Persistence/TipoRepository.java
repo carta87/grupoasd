@@ -1,9 +1,9 @@
 package com.asd.back.Persistence;
 
+import com.asd.back.Domain.Dto.MaterialOffice;
 import com.asd.back.Domain.Repository.TypeRepository;
-import com.asd.back.Domain.Dto.Type;
 import com.asd.back.Persistence.CRUD.TipoCRUDRepository;
-import com.asd.back.Persistence.Entity.Tipo;
+import com.asd.back.Persistence.Entity.MaterialOficina;
 import com.asd.back.Persistence.Mapper.TypeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -23,19 +23,19 @@ public class TipoRepository implements TypeRepository {
 
 
     @Override
-    public List<Type> getAllType() {
-        List<Tipo> tipos = (List<Tipo>) tipoCRUDRepository.findAll();
+    public List<MaterialOffice> getAllType() {
+        List<MaterialOficina> tipos = (List<MaterialOficina>) tipoCRUDRepository.findAll();
         return typeMapper.toListTypes(tipos);
     }
 
     @Override
-    public Optional<Type> getType(int id) {
+    public Optional<MaterialOffice> getType(int id) {
         return tipoCRUDRepository.findById(id).map(Type -> typeMapper.toType(Type));
     }
 
     @Override
-    public Type saveType(Type type) {
-        Tipo tipo = typeMapper.toTipo(type);
+    public MaterialOffice saveType(MaterialOffice type) {
+        MaterialOficina tipo = typeMapper.toTipo(type);
         return typeMapper.toType(tipoCRUDRepository.save(tipo));
     }
 

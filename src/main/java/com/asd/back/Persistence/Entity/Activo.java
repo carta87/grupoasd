@@ -79,21 +79,5 @@ public class Activo {
     public Date getFechaCompra() {return fechaCompra;}
     public void setFechaCompra(Date fechaCompra) {this.fechaCompra = fechaCompra;}
 
-    @Override
-    public String toString() {
-        return "Activo{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ", tipo='" + tipo + '\'' +
-                ", serial='" + serial + '\'' +
-                ", numeroInternoInventarioActivo='" + numeroInternoInventarioActivo + '\'' +
-                ", peso='" + peso + '\'' +
-                ", alto='" + alto + '\'' +
-                ", largo='" + largo + '\'' +
-                ", ancho='" + ancho + '\'' +
-                ", valorActivo=" + valorActivo +
-                ", fechaCompra=" + fechaCompra +
-                '}';
-    }
+
 }

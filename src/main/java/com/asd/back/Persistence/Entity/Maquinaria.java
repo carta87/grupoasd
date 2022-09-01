@@ -20,8 +20,5 @@ public class Maquinaria extends Activo {
     public String getMarca() { return marca; }
     public void setMarca(String marca) { this.marca = marca; }
 
-    @Override
-    public String toString() {
-        return "Maquinaria{" + "marca='" + marca + '\'' + super.toString() +'}';
-    }
+
 }

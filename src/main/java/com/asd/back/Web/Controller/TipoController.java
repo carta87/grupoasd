@@ -1,7 +1,7 @@
 package com.asd.back.Web.Controller;
 
+import com.asd.back.Domain.Dto.MaterialOffice;
 import com.asd.back.Domain.Service.TypeService;
-import com.asd.back.Domain.Dto.Type;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/Tipo")
+@RequestMapping("/MaterialOficina")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 public class TipoController {
 
@@ -28,13 +28,13 @@ public class TipoController {
     @GetMapping("/todos")
     @ApiOperation("Get all Register")
     @ApiResponse(code = 200 , message = "Data of DB")
-    public List<Type> getAllType() {return typeService.getAllType(); }
+    public List<MaterialOffice> getAllType() {return typeService.getAllType(); }
 
 
     @GetMapping("{este}")
     @ApiOperation("Get only item")
     @ApiResponse(code = 200, message = "super")
-    public Optional<Type> getRegister(
+    public Optional<MaterialOffice> getRegister(
             @ApiParam(value = "obtine un solo elemento", required = true, example = "3")
             @PathVariable("este") int id){
         return typeService.getType(id);
@@ -42,7 +42,7 @@ public class TipoController {
 
     @PostMapping("/save")
     @ApiOperation("Add new user")
-    public Type saveRegister(@RequestBody Type type){
+    public MaterialOffice saveRegister(@RequestBody MaterialOffice type){
         return typeService.saveType(type);
     }
 

@@ -11,6 +11,7 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface PersonMapper {
 
+
     @Mappings({
             @Mapping(source = "nombre", target = "name"),
             @Mapping(source = "identificacion", target = "identification")

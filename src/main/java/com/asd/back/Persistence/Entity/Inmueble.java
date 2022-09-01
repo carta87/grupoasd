@@ -20,7 +20,5 @@ public class Inmueble extends Activo {
     public String getUbicacion() { return ubicacion;}
     public void setUbicacion(String ubicacion) {this.ubicacion = ubicacion; }
 
-    @Override
-    public String toString() {
-        return "Inmueble{" + "ubicacion=" + ubicacion + super.toString() +  '}'; }
+
 }

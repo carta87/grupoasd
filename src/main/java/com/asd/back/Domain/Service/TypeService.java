@@ -1,7 +1,7 @@
 package com.asd.back.Domain.Service;
 
+import com.asd.back.Domain.Dto.MaterialOffice;
 import com.asd.back.Domain.Repository.TypeRepository;
-import com.asd.back.Domain.Dto.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,14 +14,14 @@ public class TypeService {
     @Autowired
     private TypeRepository typeRepository;
 
-    public List<Type> getAllType() {
+    public List<MaterialOffice> getAllType() {
         return typeRepository.getAllType();}
 
-    public Optional<Type> getType(int id) {
+    public Optional<MaterialOffice> getType(int id) {
         return typeRepository.getType(id);
     }
 
-    public Type saveType(Type type) {
+    public MaterialOffice saveType(MaterialOffice type) {
         return typeRepository.saveType(type);
     }
 
