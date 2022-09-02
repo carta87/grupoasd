@@ -1,7 +1,7 @@
 package com.asd.back.Web.Controller;
 
-import com.asd.back.Domain.Dto.Person;
-import com.asd.back.Domain.Service.PersonService;
+import com.asd.back.Domain.Dto.MaterialOffice;
+import com.asd.back.Domain.Service.TypeService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
@@ -12,46 +12,44 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/Persona")
+@RequestMapping("/MaterialOficina")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
-public class EmpresaCrud {
+public class MaterialOficinaController {
 
     @Autowired
-    private PersonService personService;
+    private TypeService typeService;
 
     @GetMapping(value = "status")
     String checkStatus(){
         return "ok";
     }
 
+
     @GetMapping("/todos")
     @ApiOperation("Get all Register")
     @ApiResponse(code = 200 , message = "Data of DB")
-    public List<Person> getAllPerson() {return personService.getAllPerson(); }
+    public List<MaterialOffice> getAllType() {return typeService.getAllType(); }
 
 
     @GetMapping("{este}")
     @ApiOperation("Get only item")
     @ApiResponse(code = 200, message = "super")
-    public Optional<Person> getPerson(
+    public Optional<MaterialOffice> getRegister(
             @ApiParam(value = "obtine un solo elemento", required = true, example = "3")
             @PathVariable("este") int id){
-        return personService.getPerson(id);
+        return typeService.getType(id);
     }
 
     @PostMapping("/save")
     @ApiOperation("Add new user")
-    public Person savePerson(@RequestBody Person person){
-        return personService.savePerson(person);
+    public MaterialOffice saveRegister(@RequestBody MaterialOffice type){
+        return typeService.saveType(type);
     }
 
     @DeleteMapping("/delete/{id}")
-    public boolean deletePerson(@PathVariable("id") int personId) {
-        return personService.deletePerson(personId);
+    public boolean delete(@PathVariable("id") int typeId) {
+        return typeService.deleteType(typeId);
     }
-
-
-
 
     @RequestMapping("/espana")
     public String cadena(){
@@ -62,4 +60,5 @@ public class EmpresaCrud {
     public String cadena2(){
         return "desde el back jjjjjjj";
     }
+
 }

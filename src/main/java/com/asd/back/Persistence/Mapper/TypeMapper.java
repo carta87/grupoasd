@@ -9,7 +9,7 @@ import org.mapstruct.Mappings;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = PositionMapper.class)
 public interface TypeMapper {
 
     @Mappings({
@@ -25,10 +25,13 @@ public interface TypeMapper {
             @Mapping(source = "ancho", target = "width"),
             @Mapping(source = "valorActivo", target = "valueActive"),
             @Mapping(source = "fechaCompra", target = "datePurchuse"),
+            @Mapping(source = "area", target = "position"),
+
     })
     MaterialOffice toType(MaterialOficina tipo);
     List<MaterialOffice> toListTypes(List<MaterialOficina> tipos);
 
     @InheritInverseConfiguration
+
     MaterialOficina toTipo(MaterialOffice type);
 }

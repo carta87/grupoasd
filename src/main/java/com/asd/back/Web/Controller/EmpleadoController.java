@@ -1,9 +1,7 @@
 package com.asd.back.Web.Controller;
 
-
-
-import com.asd.back.Domain.Dto.Possession;
-import com.asd.back.Domain.Service.FurnitureService;
+import com.asd.back.Domain.Dto.Person;
+import com.asd.back.Domain.Service.PersonService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
@@ -14,12 +12,12 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/Inmueble")
+@RequestMapping("/Empleado")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
-public class MuebleController {
+public class EmpleadoController {
 
     @Autowired
-    private FurnitureService furnitureService;
+    private PersonService personService;
 
     @GetMapping(value = "status")
     String checkStatus(){
@@ -29,28 +27,30 @@ public class MuebleController {
     @GetMapping("/todos")
     @ApiOperation("Get all Register")
     @ApiResponse(code = 200 , message = "Data of DB")
-    public List<Possession> getAllPerson() {return furnitureService.getAllFurniture(); }
+    public List<Person> getAllPerson() {return personService.getAllPerson(); }
 
 
     @GetMapping("{este}")
     @ApiOperation("Get only item")
     @ApiResponse(code = 200, message = "super")
-    public Optional<Possession> getPerson(
+    public Optional<Person> getPerson(
             @ApiParam(value = "obtine un solo elemento", required = true, example = "3")
             @PathVariable("este") int id){
-        return furnitureService.getFurniture(id);
+        return personService.getPerson(id);
     }
 
     @PostMapping("/save")
     @ApiOperation("Add new user")
-    public Possession savePerson(@RequestBody Possession furniture){
-        return furnitureService.saveFurniture(furniture);
+    public Person savePerson(@RequestBody Person person){
+        return personService.savePerson(person);
     }
 
     @DeleteMapping("/delete/{id}")
-    public boolean deletePerson(@PathVariable("id") int furnitureId) {
-        return furnitureService.deleteFurniture(furnitureId);
+    public boolean deletePerson(@PathVariable("id") int personId) {
+        return personService.deletePerson(personId);
     }
+
+
 
 
     @RequestMapping("/espana")
@@ -62,5 +62,4 @@ public class MuebleController {
     public String cadena2(){
         return "desde el back jjjjjjj";
     }
-
 }

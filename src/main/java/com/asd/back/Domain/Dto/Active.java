@@ -21,6 +21,22 @@ public class Active {
     public Active() {
     }
 
+    public Active(int id, String name, String description, String type, String serial, String numberInsideInventory, String weight, String tall, String length, String width, int valueActive, Date datePurchuse, Position position) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.type = type;
+        this.serial = serial;
+        this.numberInsideInventory = numberInsideInventory;
+        this.weight = weight;
+        this.tall = tall;
+        this.length = length;
+        this.width = width;
+        this.valueActive = valueActive;
+        this.datePurchuse = datePurchuse;
+        this.position = position;
+    }
+
     public int getId() {return id;}
     public void setId(int id) {this.id = id;}
 

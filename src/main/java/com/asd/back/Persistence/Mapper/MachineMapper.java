@@ -9,7 +9,7 @@ import org.mapstruct.Mappings;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = PositionMapper.class)
 public interface MachineMapper  {
 
     @Mappings({
@@ -25,6 +25,7 @@ public interface MachineMapper  {
             @Mapping(source = "ancho", target = "width"),
             @Mapping(source = "valorActivo", target = "valueActive"),
             @Mapping(source = "fechaCompra", target = "datePurchuse"),
+            @Mapping(source = "area", target = "position"),
 
     })
     Machine toMachine(Maquinaria maquinaria);

@@ -25,6 +25,12 @@ public class Area {
     public Area() {
     }
 
+    public Area(Integer id, String nombreArea, Ciudad ciudad, List<Activo> activo) {
+        this.id = id;
+        this.nombreArea = nombreArea;
+        this.ciudad = ciudad;
+        Activo = activo;
+    }
 
     public Integer getId() { return id;}
     public void setId(Integer id) {this.id = id;}
