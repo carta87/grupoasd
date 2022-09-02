@@ -9,7 +9,7 @@ import org.mapstruct.Mappings;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = PositionMapper.class)
 public interface ActiveMapper {
 
     @Mappings({
@@ -24,6 +24,8 @@ public interface ActiveMapper {
             @Mapping(source = "ancho", target = "width"),
             @Mapping(source = "valorActivo", target = "valueActive"),
             @Mapping(source = "fechaCompra", target = "datePurchuse"),
+            @Mapping(source = "area", target = "position"),
+
     })
 
     Active toActive(Activo activo);

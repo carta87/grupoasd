@@ -11,11 +11,5 @@ public class City {
     public String getNameCity() {return nameCity;}
     public void setNameCity(String nameCity) {this.nameCity = nameCity;}
 
-    @Override
-    public String toString() {
-        return "City{" +
-                "id=" + id +
-                ", nameCity='" + nameCity + '\'' +
-                '}';
-    }
+
 }

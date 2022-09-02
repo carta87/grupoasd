@@ -16,6 +16,10 @@ public class Active {
     private String width;
     private int valueActive;
     private Date  datePurchuse;
+    private Position position;
+
+    public Active() {
+    }
 
     public int getId() {return id;}
     public void setId(int id) {this.id = id;}
@@ -53,4 +57,7 @@ public class Active {
 
     public Date getDatePurchuse() {return datePurchuse;}
     public void setDatePurchuse(Date datePurchuse) {this.datePurchuse = datePurchuse;}
+
+    public Position getPosition() {  return position; }
+    public void setPosition(Position position) {  this.position = position; }
 }

@@ -23,11 +23,15 @@ public class Activo {
     private Integer valorActivo;
     @Column(name = "fecha_compra")
     private Date fechaCompra;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name= "id_area", insertable = false, updatable = false)
+    private Area area;
 
     public Activo() {
     }
 
-    public Activo(Integer id, String nombre, String descripcion, String tipo, String serial, String numeroInternoInventarioActivo, String peso, String alto, String largo, String ancho, Integer valorActivo, Date fechaCompra) {
+    public Activo(Integer id, String nombre, String descripcion, String tipo, String serial, String numeroInternoInventarioActivo,
+                  String peso, String alto, String largo, String ancho, Integer valorActivo, Date fechaCompra) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -40,6 +44,23 @@ public class Activo {
         this.ancho = ancho;
         this.valorActivo = valorActivo;
         this.fechaCompra = fechaCompra;
+    }
+
+    public Activo(Integer id, String nombre, String descripcion, String tipo, String serial, String numeroInternoInventarioActivo,
+                  String peso, String alto, String largo, String ancho, Integer valorActivo, Date fechaCompra, Area area) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.tipo = tipo;
+        this.serial = serial;
+        this.numeroInternoInventarioActivo = numeroInternoInventarioActivo;
+        this.peso = peso;
+        this.alto = alto;
+        this.largo = largo;
+        this.ancho = ancho;
+        this.valorActivo = valorActivo;
+        this.fechaCompra = fechaCompra;
+        this.area = area;
     }
 
     public Integer getId() {return id;}
@@ -79,5 +100,7 @@ public class Activo {
     public Date getFechaCompra() {return fechaCompra;}
     public void setFechaCompra(Date fechaCompra) {this.fechaCompra = fechaCompra;}
 
+    public Area getArea() { return area;  }
+    public void setArea(Area area) { this.area = area; }
 
 }
