@@ -14,28 +14,12 @@ public class Active {
     private String tall;
     private String length;
     private String width;
+    private int idEmployee;
+    private int idPosition;
     private int valueActive;
     private Date  datePurchuse;
     private Position position;
 
-    public Active() {
-    }
-
-    public Active(int id, String name, String description, String type, String serial, String numberInsideInventory, String weight, String tall, String length, String width, int valueActive, Date datePurchuse, Position position) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.type = type;
-        this.serial = serial;
-        this.numberInsideInventory = numberInsideInventory;
-        this.weight = weight;
-        this.tall = tall;
-        this.length = length;
-        this.width = width;
-        this.valueActive = valueActive;
-        this.datePurchuse = datePurchuse;
-        this.position = position;
-    }
 
     public int getId() {return id;}
     public void setId(int id) {this.id = id;}
@@ -67,6 +51,12 @@ public class Active {
 
     public String getWidth() { return width; }
     public void setWidth(String width) { this.width = width; }
+
+    public int getIdEmployee() { return idEmployee;}
+    public void setIdEmployee(int idEmployee) {this.idEmployee = idEmployee; }
+
+    public int getIdPosition() { return idPosition; }
+    public void setIdPosition(int idPosition) { this.idPosition = idPosition; }
 
     public int getValueActive() {return valueActive;}
     public void setValueActive(int valueActive) {this.valueActive = valueActive;}

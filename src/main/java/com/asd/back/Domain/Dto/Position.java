@@ -1,18 +1,13 @@
 package com.asd.back.Domain.Dto;
 
+
+import java.util.List;
+
 public class Position  {
     private int id;
     private String namePosition;
     private City city;
 
-    public Position() {
-    }
-
-    public Position(int id, String namePosition, City city) {
-        this.id = id;
-        this.namePosition = namePosition;
-        this.city = city;
-    }
 
     public int getId() {return id;}
     public void setId(int id) {this.id = id;}
@@ -22,4 +17,6 @@ public class Position  {
 
     public City getCity() { return city; }
     public void setCity(City city) { this.city = city; }
+
+
 }

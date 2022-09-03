@@ -53,13 +53,4 @@ public class ActivoController {
     public List<Active> getActiveByType(@PathVariable("type") int type) {
         return activeService.getActiveByType(type);}
 
-    @RequestMapping("/espana")
-    public String cadena(){
-        return "desde el back";
-    }
-
-    @RequestMapping("/carnaval")
-    public String cadena2(){
-        return "desde el back jjjjjjj";
-    }
 }

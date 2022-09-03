@@ -11,13 +11,12 @@ public class Ciudad {
     @Column(name = "nombre_ciudad")
     private String nombreCiudad;
 
-    public Ciudad() {
-    }
 
     public Integer getId() {return id;}
     public void setId(Integer id) {this.id = id;}
 
     public String getNombreCiudad() {return nombreCiudad;}
     public void setNombreCiudad(String nombreCiudad) {this.nombreCiudad = nombreCiudad;}
+
 
 }

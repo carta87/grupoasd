@@ -51,16 +51,4 @@ public class InmuebleController {
     public boolean deletePerson(@PathVariable("id") int furnitureId) {
         return furnitureService.deleteFurniture(furnitureId);
     }
-
-
-    @RequestMapping("/espana")
-    public String cadena(){
-        return "desde el back";
-    }
-
-    @RequestMapping("/carnaval")
-    public String cadena2(){
-        return "desde el back jjjjjjj";
-    }
-
 }

@@ -50,14 +50,5 @@ public class CiudadController {
         return cityService.deleteCity(cityId);
     }
 
-    @RequestMapping("/espana")
-    public String cadena(){
-        return "desde el back";
-    }
-
-    @RequestMapping("/carnaval")
-    public String cadena2(){
-        return "desde el back jjjjjjj";
-    }
 
 }

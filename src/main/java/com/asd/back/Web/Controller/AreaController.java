@@ -14,7 +14,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/Area")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
-public class CargoController {
+public class AreaController {
 
     @Autowired
     private PositionService positionService;
@@ -28,7 +28,6 @@ public class CargoController {
     @ApiOperation("Get all Register")
     @ApiResponse(code = 200 , message = "Data of DB")
     public List<Position> getAllPosition() {return positionService.getAllPosition(); }
-
 
     @GetMapping("{este}")
     @ApiOperation("Get only item")
@@ -50,13 +49,4 @@ public class CargoController {
         return positionService.deletePosition(positionId);
     }
 
-    @RequestMapping("/espana")
-    public String cadena(){
-        return "desde el back";
-    }
-
-    @RequestMapping("/carnaval")
-    public String cadena2(){
-        return "desde el back jjjjjjj";
-    }
 }

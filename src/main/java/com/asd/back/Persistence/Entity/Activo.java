@@ -19,6 +19,10 @@ public class Activo {
     private String alto;
     private String largo;
     private String ancho;
+    @Column(name = "id_area")
+    private Integer idArea;
+    @Column(name = "id_empleado")
+    private Integer idEmpleado;
     @Column(name = "valor_compra")
     private Integer valorActivo;
     @Column(name = "fecha_compra")
@@ -27,41 +31,6 @@ public class Activo {
     @JoinColumn(name= "id_area", insertable = false, updatable = false)
     private Area area;
 
-    public Activo() {
-    }
-
-    public Activo(Integer id, String nombre, String descripcion, String tipo, String serial, String numeroInternoInventarioActivo,
-                  String peso, String alto, String largo, String ancho, Integer valorActivo, Date fechaCompra) {
-        this.id = id;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.tipo = tipo;
-        this.serial = serial;
-        this.numeroInternoInventarioActivo = numeroInternoInventarioActivo;
-        this.peso = peso;
-        this.alto = alto;
-        this.largo = largo;
-        this.ancho = ancho;
-        this.valorActivo = valorActivo;
-        this.fechaCompra = fechaCompra;
-    }
-
-    public Activo(Integer id, String nombre, String descripcion, String tipo, String serial, String numeroInternoInventarioActivo,
-                  String peso, String alto, String largo, String ancho, Integer valorActivo, Date fechaCompra, Area area) {
-        this.id = id;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.tipo = tipo;
-        this.serial = serial;
-        this.numeroInternoInventarioActivo = numeroInternoInventarioActivo;
-        this.peso = peso;
-        this.alto = alto;
-        this.largo = largo;
-        this.ancho = ancho;
-        this.valorActivo = valorActivo;
-        this.fechaCompra = fechaCompra;
-        this.area = area;
-    }
 
     public Integer getId() {return id;}
     public void setId(Integer id) {this.id = id;}
@@ -96,6 +65,12 @@ public class Activo {
 
     public Integer getValorActivo() {return valorActivo;}
     public void setValorActivo(Integer valorActivo) {this.valorActivo = valorActivo;}
+
+    public Integer getIdArea() { return idArea; }
+    public void setIdArea(Integer idArea) {  this.idArea = idArea; }
+
+    public Integer getIdEmpleado() { return idEmpleado; }
+    public void setIdEmpleado(Integer idEmpleado) { this.idEmpleado = idEmpleado; }
 
     public Date getFechaCompra() {return fechaCompra;}
     public void setFechaCompra(Date fechaCompra) {this.fechaCompra = fechaCompra;}

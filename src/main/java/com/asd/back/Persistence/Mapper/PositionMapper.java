@@ -3,28 +3,23 @@ package com.asd.back.Persistence.Mapper;
 import com.asd.back.Domain.Dto.City;
 import com.asd.back.Domain.Dto.Position;
 import com.asd.back.Persistence.Entity.Area;
-import org.mapstruct.InheritInverseConfiguration;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
+import org.mapstruct.*;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", uses = CityMapper.class)
-public interface PositionMapper {
+@Mapper(componentModel = "spring", uses =  CityMapper.class  )
+public abstract class PositionMapper {
 
-    @Mappings(value = {
+    @Mappings({
             @Mapping(source = "nombreArea", target = "namePosition"),
             @Mapping(source = "ciudad", target = "city"),
 
 
     })
-
-    Position toPosition(Area cargo);
-    List<Position> toListPosition(List<Area> cargos);
+    public abstract Position toPosition(Area cargo);
+    public abstract List<Position> toListPosition(List<Area> cargos);
 
     @InheritInverseConfiguration
-    Area toCargo(Position position);
-
-
+    @Mapping(target = "activo", ignore = true)
+    public abstract Area toCargo(Position position);
 }

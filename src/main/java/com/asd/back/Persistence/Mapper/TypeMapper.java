@@ -26,6 +26,8 @@ public interface TypeMapper {
             @Mapping(source = "valorActivo", target = "valueActive"),
             @Mapping(source = "fechaCompra", target = "datePurchuse"),
             @Mapping(source = "area", target = "position"),
+            @Mapping(source = "idArea", target = "idPosition"),
+            @Mapping(source = "idEmpleado", target = "idEmployee"),
 
     })
     MaterialOffice toType(MaterialOficina tipo);
