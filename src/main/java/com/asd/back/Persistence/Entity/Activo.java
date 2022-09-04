@@ -26,6 +26,7 @@ public class Activo {
     @Column(name = "valor_compra")
     private Integer valorActivo;
     @Column(name = "fecha_compra")
+    @Temporal(TemporalType.DATE)
     private Date fechaCompra;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name= "id_area", insertable = false, updatable = false)

@@ -3,12 +3,15 @@ package com.asd.back.Persistence;
 import com.asd.back.Domain.Dto.Active;
 import com.asd.back.Domain.Repository.ActiveRepository;
 import com.asd.back.Persistence.CRUD.ActivoCRUDRepository;
+import com.asd.back.Persistence.CRUD.MaquinaCRUDRepository;
 import com.asd.back.Persistence.Entity.Activo;
 import com.asd.back.Persistence.Mapper.ActiveMapper;
 
+import com.asd.back.Persistence.Mapper.FurnitureMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,9 +20,16 @@ public class ActivoReposito implements ActiveRepository {
 
     @Autowired
     private ActivoCRUDRepository activoCRUDRepository;
-
     @Autowired
     private ActiveMapper activeMapper;
+
+
+    @Autowired
+    private MaquinaCRUDRepository MaquinaCRUDRepository;
+    @Autowired
+    private FurnitureMapper furnitureMapper;
+
+
 
     @Override
     public List<Active> getAllActive() {
@@ -43,8 +53,8 @@ public class ActivoReposito implements ActiveRepository {
         activoCRUDRepository.deleteById(activeId);
     }
 
-    @Override
-    public List<Active> getActiveByType(int type) {
+
+     /*public List<Active> getActiveByType(int type) {
         String ahora = ""+type;
         //System.out.println("esta es la varaible por path " +type);
         //List<Activo> activos = (List<Activo>) activoCRUDRepository.findAll();
@@ -65,14 +75,29 @@ public class ActivoReposito implements ActiveRepository {
             List<Activo> activos = (List<Activo>) activoCRUDRepository.findAll();
             return activeMapper.toListActive(activos);
         }
-        /*
-        public List<Active> getActiveByType(Predicete<Active> filter){
+       */
 
-            List<Active> activos = activoCRUDRepository.findByType(type);
 
-        }
-        */
+    @Override
+    public Optional<List<Active>> getActiveByType(String type){
+         List<Activo> activo = activoCRUDRepository.findByTipoEquals(type);
+         return Optional.of(activeMapper.toListActive(activo));
+
     }
+
+    @Override
+    public Optional<List<Active>> getActiveBySerial(String serial) {
+        List<Activo> activo = activoCRUDRepository.findBySerial(serial);
+        return Optional.of(activeMapper.toListActive(activo));
+    }
+
+    @Override
+    public Optional<List<Active>> getActiveByDate(Date date) {
+        List<Activo> activo = activoCRUDRepository.findAllByFechaCompra(date);
+        return Optional.of(activeMapper.toListActive(activo));
+    }
+
+
 }
     
 

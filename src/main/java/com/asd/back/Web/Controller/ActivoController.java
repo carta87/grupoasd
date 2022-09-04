@@ -8,6 +8,11 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,8 +54,30 @@ public class ActivoController {
         return activeService.deleteActive(activeId);
     }
 
-    @GetMapping("/tipo/{type}")
-    public List<Active> getActiveByType(@PathVariable("type") int type) {
+    @GetMapping("/Tipo/{type}")
+    public Optional<List<Active>> getActiveByType(@PathVariable("type") String type) {
         return activeService.getActiveByType(type);}
+
+    @GetMapping("/Serial/{serial}")
+    public Optional<List<Active>> getActiveBySerial (@PathVariable("serial") String serial){
+        return activeService.getActiveBySerial(serial);
+    }
+
+    @GetMapping("/FechaCompra/{dateImput}")
+    public Optional<List<Active>> getActiveByDate (@PathVariable("dateImput") String dateImput){
+
+        Date date = new Date();
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+        try {
+             date = format.parse(dateImput);
+            System.out.println(date);
+        }
+        catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return activeService.getActiveByDate((date));
+    }
 
 }

@@ -5,6 +5,7 @@ import com.asd.back.Domain.Repository.ActiveRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,7 +33,17 @@ public class ActiveService{
         }).orElse(false);
     }
 
-    public List<Active> getActiveByType(int type){
+    public Optional<List<Active>> getActiveByType(String type){
         return activeRepository.getActiveByType(type);
     }
+    
+    public  Optional<List<Active>> getActiveBySerial(String serial){
+        return  activeRepository.getActiveBySerial(serial);
+    }
+    
+    public Optional<List<Active>> getActiveByDate(Date date){
+        return  activeRepository.getActiveByDate(date);
+    }
+
+
 }

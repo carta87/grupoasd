@@ -27,7 +27,6 @@ public interface ActiveMapper {
             @Mapping(source = "idArea", target = "idPosition"),
             @Mapping(source = "idEmpleado", target = "idEmployee"),
 
-
     })
 
     Active toActive(Activo activo);
