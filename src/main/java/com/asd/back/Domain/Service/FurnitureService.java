@@ -4,7 +4,6 @@ import com.asd.back.Domain.Dto.Possession;
 import com.asd.back.Domain.Repository.FurnitureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 

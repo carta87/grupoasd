@@ -13,6 +13,7 @@ import java.util.List;
 public interface TypeMapper {
 
     @Mappings({
+            @Mapping(source = "id", target = "id" ),
             @Mapping( source = "estado", target = "condition"),
             @Mapping(source = "nombre", target = "name"),
             @Mapping(source = "descripcion", target = "description"),
@@ -30,10 +31,9 @@ public interface TypeMapper {
             @Mapping(source = "idEmpleado", target = "idEmployee"),
 
     })
-    MaterialOffice toType(MaterialOficina tipo);
-    List<MaterialOffice> toListTypes(List<MaterialOficina> tipos);
+    MaterialOffice toType(MaterialOficina materialOficina);
+    List<MaterialOffice> toListTypes(List<MaterialOficina> materialOficinaList);
 
     @InheritInverseConfiguration
-
     MaterialOficina toTipo(MaterialOffice type);
 }

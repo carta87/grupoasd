@@ -7,6 +7,8 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.DateFormat;
@@ -32,39 +34,60 @@ public class ActivoController {
     @GetMapping("/todos")
     @ApiOperation("Get all Register")
     @ApiResponse(code = 200 , message = "Data of DB")
-    public List<Active> getAllActive() {return activeService.getAllActive(); }
+    public ResponseEntity<List<Active>> getAllActive() {return new ResponseEntity<>(activeService.getAllActive(), HttpStatus.OK); }
 
     @GetMapping("{este}")
     @ApiOperation("Get only item")
     @ApiResponse(code = 200, message = "super")
-    public Optional<Active> getActive(
+    public ResponseEntity<Active> getActive(
             @ApiParam(value = "obtine un solo elemento", required = true, example = "3")
             @PathVariable("este") int id){
-        return activeService.getActive(id);
+        return activeService.getActive(id)
+                .map(active -> new ResponseEntity<>(active, HttpStatus.OK))
+                .orElse( new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping("/save")
     @ApiOperation("Add new user")
+    public ResponseEntity<Active> saveActive(@RequestBody Active active){
+        return new ResponseEntity<>(activeService.saveActive(active),  HttpStatus.CREATED);
+    }
+    /*
+    @PostMapping("/save")
+    @ApiOperation("Add new user")
     public Active saveActive(@RequestBody Active active){
         return activeService.saveActive(active);
-    }
+    }*/
+
 
     @DeleteMapping("/delete/{id}")
-    public boolean deleteActive(@PathVariable("id") int activeId) {
-        return activeService.deleteActive(activeId);
+    public ResponseEntity deleteActive(@PathVariable("id") int activeId) {
+        if (activeService.deleteActive(activeId)){
+            return new ResponseEntity(HttpStatus.OK);
+        }else {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+
     }
 
     @GetMapping("/Tipo/{type}")
-    public Optional<List<Active>> getActiveByType(@PathVariable("type") String type) {
-        return activeService.getActiveByType(type);}
+    public ResponseEntity<List<Active>> getActiveByType(@PathVariable("type") String type) {
+
+        return activeService.getActiveByType(type)
+                .map(activo -> new ResponseEntity<>(activo, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
 
     @GetMapping("/Serial/{serial}")
-    public Optional<List<Active>> getActiveBySerial (@PathVariable("serial") String serial){
-        return activeService.getActiveBySerial(serial);
+    public ResponseEntity<List<Active>> getActiveBySerial (@PathVariable("serial") String serial){
+        return activeService.getActiveBySerial(serial)
+                .map(activo -> new ResponseEntity<>(activo, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @GetMapping("/FechaCompra/{dateImput}")
-    public Optional<List<Active>> getActiveByDate (@PathVariable("dateImput") String dateImput){
+    public ResponseEntity<List<Active>> getActiveByDate (@PathVariable("dateImput") String dateImput){
 
         Date date = new Date();
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -77,7 +100,11 @@ public class ActivoController {
             e.printStackTrace();
         }
 
-        return activeService.getActiveByDate((date));
+        return activeService.getActiveByDate(date)
+                .map(activo -> new ResponseEntity<>(activo, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+
+
     }
 
 }

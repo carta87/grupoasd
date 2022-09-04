@@ -2,6 +2,7 @@ package com.asd.back.Persistence.Entity;
 
 import javax.persistence.*;
 import java.util.Date;
+
 @Entity (name= "activo")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Activo {
@@ -31,7 +32,6 @@ public class Activo {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name= "id_area", insertable = false, updatable = false)
     private Area area;
-
 
     public Integer getId() {return id;}
     public void setId(Integer id) {this.id = id;}

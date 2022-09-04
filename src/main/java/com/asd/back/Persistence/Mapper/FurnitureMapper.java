@@ -6,12 +6,12 @@ import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
-
 import java.util.List;
 
 @Mapper(componentModel = "spring", uses = PositionMapper.class)
 public interface FurnitureMapper {
     @Mappings({
+            @Mapping(source = "id", target = "id" ),
             @Mapping(source = "ubicacion", target = "location"),
             @Mapping(source = "nombre", target = "name"),
             @Mapping(source = "descripcion", target = "description"),

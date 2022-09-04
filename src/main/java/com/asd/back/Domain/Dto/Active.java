@@ -1,6 +1,5 @@
 package com.asd.back.Domain.Dto;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Active {
@@ -20,9 +19,8 @@ public class Active {
     private Date  datePurchuse;
     private Position position;
 
-
-    public int getId() {return id;}
-    public void setId(int id) {this.id = id;}
+    public int getId() {return id; }
+    public void setId(int id) { this.id = id; }
 
     public String getType() {return type;}
     public void setType(String type) {this.type = type;}

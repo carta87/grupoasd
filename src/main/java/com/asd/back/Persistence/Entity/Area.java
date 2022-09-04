@@ -1,7 +1,5 @@
 package com.asd.back.Persistence.Entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,14 +11,10 @@ public class Area {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "nombre_area")
-    private String nombreArea;
-
+    private String nombre;
     @OneToOne( cascade = {CascadeType.ALL} )
     @JoinColumn(name ="ciudad", referencedColumnName = "id")
     private  Ciudad ciudad;
-
-
     @OneToMany(mappedBy = "area", cascade = CascadeType.ALL)
     private List<Activo> activo = new ArrayList<>();
 
@@ -28,8 +22,8 @@ public class Area {
     public Integer getId() { return id;}
     public void setId(Integer id) {this.id = id;}
 
-    public String getNombreArea() {return nombreArea;}
-    public void setNombreArea(String nombreCargo) {this.nombreArea = nombreArea;}
+    public String getNombre() { return nombre;}
+    public void setNombre(String nombre) { this.nombre = nombre; }
 
     public Ciudad getCiudad() {
         return ciudad;

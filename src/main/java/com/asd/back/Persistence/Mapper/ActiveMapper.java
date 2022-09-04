@@ -6,13 +6,13 @@ import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
-
 import java.util.List;
 
 @Mapper(componentModel = "spring", uses = PositionMapper.class)
 public interface ActiveMapper {
 
     @Mappings({
+            @Mapping(source = "id", target = "id" ),
             @Mapping(source = "nombre", target = "name"),
             @Mapping(source = "descripcion", target = "description"),
             @Mapping(source = "tipo", target = "type"),
@@ -26,7 +26,8 @@ public interface ActiveMapper {
             @Mapping(source = "fechaCompra", target = "datePurchuse"),
             @Mapping(source = "idArea", target = "idPosition"),
             @Mapping(source = "idEmpleado", target = "idEmployee"),
-
+            @Mapping(source = "area", target = "position"),
+            //@Mapping(target = "position", ignore = true)
     })
 
     Active toActive(Activo activo);

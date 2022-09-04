@@ -11,7 +11,6 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface PersonMapper {
 
-
     @Mappings({
             @Mapping(source = "nombre", target = "name"),
             @Mapping(source = "identificacion", target = "identification")
@@ -20,5 +19,7 @@ public interface PersonMapper {
     List<Person> toListPerson(List<Persona> personas);
 
     @InheritInverseConfiguration
-    Persona toPersona(Person person);
+    default Persona toPersona(Person ignoredPerson) {
+        return null;
+    }
 }

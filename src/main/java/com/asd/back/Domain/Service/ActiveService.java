@@ -4,7 +4,6 @@ import com.asd.back.Domain.Dto.Active;
 import com.asd.back.Domain.Repository.ActiveRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -44,6 +43,5 @@ public class ActiveService{
     public Optional<List<Active>> getActiveByDate(Date date){
         return  activeRepository.getActiveByDate(date);
     }
-
 
 }

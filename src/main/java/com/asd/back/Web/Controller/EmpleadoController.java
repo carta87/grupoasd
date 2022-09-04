@@ -6,10 +6,10 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/Empleado")
@@ -27,27 +27,34 @@ public class EmpleadoController {
     @GetMapping("/todos")
     @ApiOperation("Get all Register")
     @ApiResponse(code = 200 , message = "Data of DB")
-    public List<Person> getAllPerson() {return personService.getAllPerson(); }
+    public ResponseEntity<List<Person>> getAllPerson() {return new ResponseEntity<>(personService.getAllPerson(), HttpStatus.OK); }
 
 
     @GetMapping("{este}")
     @ApiOperation("Get only item")
     @ApiResponse(code = 200, message = "super")
-    public Optional<Person> getPerson(
+    public ResponseEntity<Person> getPerson(
             @ApiParam(value = "obtine un solo elemento", required = true, example = "3")
             @PathVariable("este") int id){
-        return personService.getPerson(id);
+        return personService.getPerson(id)
+                .map(person ->  new ResponseEntity<>(person, HttpStatus.OK))
+                .orElse( new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping("/save")
     @ApiOperation("Add new user")
-    public Person savePerson(@RequestBody Person person){
-        return personService.savePerson(person);
+    public ResponseEntity<Person> savePerson(@RequestBody Person person){
+
+        return new ResponseEntity<>(personService.savePerson(person), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
-    public boolean deletePerson(@PathVariable("id") int personId) {
-        return personService.deletePerson(personId);
+    public ResponseEntity deletePerson(@PathVariable("id") int personId) {
+        if(personService.deletePerson(personId)){
+            return new ResponseEntity(HttpStatus.OK);
+        }else {
+            return  new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
     }
 
 }

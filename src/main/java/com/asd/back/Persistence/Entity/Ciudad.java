@@ -11,7 +11,6 @@ public class Ciudad {
     @Column(name = "nombre_ciudad")
     private String nombreCiudad;
 
-
     public Integer getId() {return id;}
     public void setId(Integer id) {this.id = id;}
 

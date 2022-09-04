@@ -1,13 +1,9 @@
 package com.asd.back.Domain.Dto;
 
-
-import java.util.List;
-
 public class Position  {
     private int id;
     private String namePosition;
     private City city;
-
 
     public int getId() {return id;}
     public void setId(int id) {this.id = id;}

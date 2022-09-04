@@ -6,10 +6,10 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/Area")
@@ -27,26 +27,32 @@ public class AreaController {
     @GetMapping("/todos")
     @ApiOperation("Get all Register")
     @ApiResponse(code = 200 , message = "Data of DB")
-    public List<Position> getAllPosition() {return positionService.getAllPosition(); }
+    public ResponseEntity<List<Position>> getAllPosition() {return new ResponseEntity<>(positionService.getAllPosition(), HttpStatus.OK) ; }
 
     @GetMapping("{este}")
     @ApiOperation("Get only item")
     @ApiResponse(code = 200, message = "super")
-    public Optional<Position> getPosition(
+    public ResponseEntity<Position> getPosition(
             @ApiParam(value = "obtine un solo elemento", required = true, example = "3")
             @PathVariable("este") int id){
-        return positionService.getPosition(id);
+        return positionService.getPosition(id)
+                .map(position -> new ResponseEntity<>(position, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping("/save")
     @ApiOperation("Add new user")
-    public Position savePosition(@RequestBody Position position){
-        return positionService.savePosition(position);
+    public ResponseEntity<Position> savePosition(@RequestBody Position position){
+        return new ResponseEntity<>(positionService.savePosition(position), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
-    public boolean deletePosition(@PathVariable("id") int positionId) {
-        return positionService.deletePosition(positionId);
-    }
+    public ResponseEntity deletePosition(@PathVariable("id") int positionId) {
+        if (positionService.deletePosition(positionId)){
+            return  new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
 
+    }
 }

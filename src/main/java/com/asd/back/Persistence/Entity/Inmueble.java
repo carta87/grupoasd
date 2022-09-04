@@ -1,15 +1,22 @@
 package com.asd.back.Persistence.Entity;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity (name = "inmueble")
 @PrimaryKeyJoinColumn(name = "id_inmueble")
 public class Inmueble extends Activo {
-
+    @Id
+    @GeneratedValue
+    private Integer id;
     private String ubicacion;
 
-    public Inmueble() {
+    @Override
+    public Integer getId() {
+        return id;
+    }
+    @Override
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getUbicacion() { return ubicacion;}
