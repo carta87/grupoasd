@@ -59,7 +59,6 @@ public class ActivoController {
         return activeService.saveActive(active);
     }*/
 
-
     @DeleteMapping("/delete/{id}")
     public ResponseEntity deleteActive(@PathVariable("id") int activeId) {
         if (activeService.deleteActive(activeId)){
